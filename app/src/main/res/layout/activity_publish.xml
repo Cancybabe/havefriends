@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/act_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@color/act_text">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发布活动"
+            android:textSize="20sp"
+            android:textColor="@color/act_titlebar"/>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10px"
+        android:layout_marginLeft="10px"
+        >
+
+
+        <EditText
+            android:id="@+id/act_publish_ed_actionname"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="输入活动名称"
+            android:padding="10dp"
+            android:background="@drawable/act_publish_edit"
+            />
+
+
+        <RelativeLayout
+            android:id="@+id/act_publish_layout_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/act_publish_edit"
+
+            >
+
+            <Spinner
+                android:id="@+id/act_publish_spinner"
+                android:spinnerMode="dialog"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_toLeftOf="@+id/act_public_iv_type"
+                android:background="@null"></Spinner>
+
+        <ImageView
+            android:id="@+id/act_public_iv_type"
+            android:layout_alignParentRight="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/act_public_jiantou"
+           />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:background="@color/act_text">
+
+
+        <EditText
+            android:id="@+id/act_publish_et_actiondesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="输入活动简介"
+            android:padding="5dp"
+            android:background="@drawable/act_publish_edit"
+            />
+
+            <LinearLayout
+                android:id="@+id/act_publish_layouttop_pics"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:orientation="horizontal"
+                android:background="@color/act_text">
+                <!--
+                <ImageView
+                    android:id="@+id/act_publish_act_pic1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/act_publish_act_pic2"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/act_publish_act_pic3"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                    -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/act_publish_layoutbuttom_pics"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:orientation="horizontal"
+                android:background="@color/act_text">
+
+                <!--
+                <ImageView
+                    android:id="@+id/act_publish_act_pic4"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/act_publish_act_pic5"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/act_publish_act_pic6"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                    -->
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/act_publish_relativelayout_place"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/act_publish_edit"
+            >
+            <ImageView
+                android:id="@+id/act_public_iv_place"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/act_publish_place"/>
+
+            <TextView
+                android:id="@+id/act_publish_tv_actplace"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/act_public_iv_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="选择地点"
+                />
+
+        <TextView
+            android:id="@+id/act_publish_tv_place"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text=" "
+             />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/act_publish_edit"
+            >
+            <ImageView
+                android:id="@+id/act_public_iv_money"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/act_publish_money"/>
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/act_public_iv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="选择金额"
+                />
+
+            <EditText
+                android:id="@+id/act_publish_et_money"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:gravity="center|right"
+                android:text="0"
+                android:textSize="14sp"
+                android:background="@null"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/act_publish_layout_time"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/act_publish_edit"
+            >
+            <ImageView
+                android:id="@+id/act_public_iv_time"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/act_publish_time"/>
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/act_public_iv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="选择时间"
+                />
+
+            <TextView
+                android:id="@+id/act_publish_tv_time"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="2016.11.11 23:00"
+                />
+
+        </RelativeLayout>
+
+
+
+        <Button
+            android:id="@+id/act_publish_btn_publish"
+            android:onClick="onPublishClick"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/act_titlebar"
+            android:text="发布"
+            android:padding="5dp"
+            android:background="@drawable/act_publish_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

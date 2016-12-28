@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/act_publishmap_poi_item_selector">
+
+
+    <TextView
+        android:id="@+id/act_publishmap_poiname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="名称"
+        ></TextView>
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:background="@color/act_titlebar"/>
+
+
+    <TextView
+        android:id="@+id/act_publishmap_poidetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="位置详细描述"
+        android:padding="5dp"
+        ></TextView>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/act_titlebar"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/act_publishmap_btn_cancel"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="取消"
+                android:background="@null"
+                android:layout_height="wrap_content" />
+
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/act_titlebar"
+                />
+
+            <Button
+                android:id="@+id/act_publishmap_btn_select"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="确定"
+                android:background="@null"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

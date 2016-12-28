@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/act_background"
+    android:padding="10dp"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/fra_more_gv_item_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/fra_my_youhui"/>
+
+    <TextView
+        android:id="@+id/fra_more_gv_item_tv"
+        android:text="优惠"
+        android:textColor="@color/act_textcolor"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

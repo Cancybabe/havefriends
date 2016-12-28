@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/fra_home_lv_item_heartbefore"></item>
+
+    <item android:state_checked="true" android:state_pressed="true" android:drawable="@drawable/fra_home_lv_item_heartafter"/>
+</selector>

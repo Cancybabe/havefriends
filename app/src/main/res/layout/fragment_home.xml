@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/act_text"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+   <ImageView
+       android:src="@drawable/fra_home_back"
+       android:layout_width="20dp"
+       android:layout_height="20dp"
+       android:layout_marginLeft="5dp"/>
+
+        <RelativeLayout
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            >
+<!--
+            <FrameLayout
+                android:id="@+id/framelayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:onClick="animate"
+                >
+
+            <ImageView
+                android:id="@+id/search"
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="24dp"
+                android:src="@drawable/search_bar"
+                android:clickable="true"
+                android:onClick="animate" />
+
+            <EditText
+                android:id="@+id/text"
+                android:layout_width="150dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:textSize="12sp"
+                android:paddingStart="4dp"
+                android:textColor="?android:colorAccent"
+                android:alpha="0" />
+
+            </FrameLayout>
+
+-->
+
+            <EditText
+                android:layout_centerVertical="true"
+                android:id="@+id/fra_ed_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fra_home_search_selector"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/fra_iv_search"
+                android:src="@drawable/fra_home_search"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="true"
+                />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:src="@drawable/fra_home_menu"
+            android:layout_marginRight="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <bhj.cancybabe.gotoplayer.ui.XListView
+            android:id="@+id/fra_home_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </bhj.cancybabe.gotoplayer.ui.XListView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

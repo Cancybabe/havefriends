@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/act_login_backgroundpic"
+
+    android:orientation="vertical">
+
+   <ImageView
+       android:src="@drawable/act_back"
+       android:layout_marginLeft="5dp"
+       android:layout_marginTop="5dp"
+       android:layout_width="30dp"
+       android:layout_height="30dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:text="Welcome"
+            android:textColor="@color/act_text"
+            android:textSize="60sp" />
+
+        <EditText
+            android:id="@+id/act_login_et_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/act_login_editselector"
+            android:gravity="center_horizontal"
+            android:hint="请输入用户名"
+            android:padding="10dp"
+            android:textColor="@color/act_text"
+            android:textColorHint="@color/act_text" />
+
+        <EditText
+            android:id="@+id/act_login_et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/act_login_editselector"
+            android:gravity="center_horizontal"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColor="@color/act_text"
+            android:textColorHint="@color/act_text" />
+
+        <Button
+            android:id="@+id/act_login_btnlogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/act_login_btn_selector"
+            android:text="立即登录"
+            android:onClick="onLoginBtnClick"
+            android:textColor="@color/act_text"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="忘记密码"
+                android:textColor="@color/act_text" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/act_text"></View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="立即注册"
+                android:clickable="true"
+                android:onClick="onRegisterClick"
+                android:textColor="@color/act_text" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

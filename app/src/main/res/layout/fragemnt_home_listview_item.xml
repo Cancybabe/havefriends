@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/act_text"
+    android:orientation="vertical">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:padding="10dp">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="35dp"
+           android:orientation="horizontal"
+           android:gravity="center_vertical">
+
+           <bhj.cancybabe.gotoplayer.ui.MyImageView
+               android:id="@+id/fra_home_iv_head"
+               android:src="@drawable/headnew"
+               android:layout_width="30dp"
+               android:layout_height="30dp" />
+
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_marginLeft="10dp">
+
+               <TextView
+                   android:id="@+id/fra_home_lv_tv_name"
+                   android:text="Cancybabe"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"/>
+               <TextView
+                   android:id="@+id/fra_home_lv_tv_time"
+                   android:text="昨天 11:11"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="10sp"/>
+
+           </LinearLayout>
+
+
+           <View
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_height="1dp"/>
+
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:gravity="right"
+               >
+               <TextView
+                   android:id="@+id/fra_home_lv_tv_money"
+                   android:text="100元"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="10sp"/>
+               <TextView
+                   android:id="@+id/fra_home_lv_tv_distance"
+                   android:text="距您2.5km"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="10sp"/>
+
+           </LinearLayout>
+       </LinearLayout>
+
+       <TextView
+           android:id="@+id/fra_home_lv_tv_actionDetails"
+           android:layout_marginTop="10dp"
+           android:maxLines="2"
+           android:text="旋转木马是最残忍的游戏，彼此追逐却有永恒的距离。"
+           android:textSize="18sp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+
+
+
+       <ImageView
+           android:id="@+id/fra_home_lv_iv_actionPic"
+           android:scaleType="fitXY"
+           android:layout_width="wrap_content"
+           android:layout_height="250dp"
+           android:src="@drawable/xuanzhuanmuma"/>
+   </LinearLayout>
+
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/fra_home_list_item_bttompic"/>
+
+        <ImageView
+            android:id="@+id/fra_home_lv_iv_like"
+            android:src="@drawable/fra_home_iv_heart_selector"
+           android:layout_centerHorizontal="true"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            />
+    </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

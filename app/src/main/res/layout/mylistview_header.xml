@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+   <RelativeLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       >
+
+       <ImageView
+           android:id="@+id/mylistview_iv_header"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/xlistview_arrow"/>
+
+       <ProgressBar
+           android:id="@+id/mylistview_headerprogress"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:visibility="gone"
+           style="?android:attr/progressBarStyleSmall"/>
+
+       <LinearLayout
+           android:layout_toRightOf="@id/mylistview_iv_header"
+           android:layout_marginLeft="10dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+           android:orientation="vertical">
+
+           <TextView
+               android:id="@+id/mylistview_tv_hint"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="下拉加载更多"/>
+
+           <TextView
+               android:id="@+id/mylistview_tv_lastupdate"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="上次更新20:03"/>
+
+
+       </LinearLayout>
+   </RelativeLayout>
+
+</LinearLayout>
