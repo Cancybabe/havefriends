@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.search.core.PoiInfo;
-import com.baidu.mapapi.search.poi.PoiAddrInfo;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,7 +25,6 @@ import bhj.cancybabe.gotoplayer.bean.UserActivtiesInfo;
 import bhj.cancybabe.gotoplayer.bean.UserInfo;
 import bhj.cancybabe.gotoplayer.utils.FindUserInfoUtils;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.DownloadFileListener;
 import cn.bmob.v3.listener.FindListener;
@@ -39,7 +38,8 @@ public class HomeFraListViewADapter extends BaseAdapter {
     private Context context;
     private ArrayList<UserActivtiesInfo> datas;
     String nickName;//用户名
-
+    private int[] picIds = {R.id.pic1,R.id.pic2,R.id.pic3,R.id.pic4,R.id.pic5,R.id.pic6};
+    int j;
     public HomeFraListViewADapter(Context context, ArrayList<UserActivtiesInfo> datas) {
         this.context = context;
         this.datas = datas;
@@ -76,6 +76,12 @@ public class HomeFraListViewADapter extends BaseAdapter {
             viewHolder.ivActionPic = (ImageView) view.findViewById(R.id.fra_home_lv_iv_actionPic);
             viewHolder.ivActionUserHead = (ImageView) view.findViewById(R.id.fra_home_iv_head);
             viewHolder.ivUserPraise = (ImageView) view.findViewById(R.id.fra_home_lv_iv_like);
+            viewHolder.topLayout = (LinearLayout) view.findViewById(R.id.toppiclayout);
+            viewHolder.buttomLayout = (LinearLayout) view.findViewById(R.id.buttompiclayout);
+            for (int a=0;a < 6;a++){
+                viewHolder.ivPics[a] = (ImageView) view.findViewById(picIds[a]);
+            }
+
             view.setTag(viewHolder);
         } else {
             view = convertView;
@@ -93,33 +99,36 @@ public class HomeFraListViewADapter extends BaseAdapter {
 
 
         //图片的三级缓存
-        String picUrl = currentActInfo.getActionPic().get(0).getUrl();
-        Log.i("myTag",picUrl);
+        //下载所有的图片
+        for(j = 0; j < currentActInfo.getActionPic().size();j++){
+            String picUrl = currentActInfo.getActionPic().get(j).getUrl();
+            String fileUrl = picUrl.substring(picUrl.lastIndexOf("/") +1,picUrl.length()-4);
+           // Log.i("myTag",fileUrl);
 
-        String fileUrl = picUrl.substring(picUrl.lastIndexOf("/") +1,picUrl.length()-4);
-        Log.i("myTag",fileUrl);
+            File actionFile = new File("sdcard/gotoplayActionPic"+fileUrl+".png");
 
-        File actionFile = new File("sdcard/gotoplayActionPic"+fileUrl+".png");
-
-        if (actionFile.exists()){
-            viewHolder.ivActionPic.setImageBitmap(BitmapFactory.decodeFile(actionFile.getAbsolutePath()));
-        }else {
-            //显示活动图片，
-            //download第一个参数是指定的下载路径，也可以下载以后保存到这个路径
-            currentActInfo.getActionPic().get(0).download(actionFile,new DownloadFileListener() {
-                @Override
-                public void done(String path, BmobException e) {
-                    if (e == null) {
-                        viewHolder.ivActionPic.setImageBitmap(BitmapFactory.decodeFile(path));
+            if (actionFile.exists()){
+                viewHolder.ivPics[j].setImageBitmap(BitmapFactory.decodeFile(actionFile.getAbsolutePath()));
+            }else {
+                //显示活动图片，
+                //download第一个参数是指定的下载路径，也可以下载以后保存到这个路径
+                currentActInfo.getActionPic().get(j).download(actionFile,new DownloadFileListener() {
+                    @Override
+                    public void done(String path, BmobException e) {
+                        if (e == null) {
+                            viewHolder.ivPics[j].setImageBitmap(BitmapFactory.decodeFile(path));
+                        }
                     }
-                }
+                    @Override
+                    public void onProgress(Integer integer, long l) {
 
-                @Override
-                public void onProgress(Integer integer, long l) {
+                    }
+                });
+            }
 
-                }
-            });
         }
+
+
 
 
         //获取发布者的昵称
@@ -385,6 +394,9 @@ public class HomeFraListViewADapter extends BaseAdapter {
         ImageView ivActionPic;
         ImageView ivActionUserHead;
         ImageView ivUserPraise;
+        LinearLayout topLayout;
+        LinearLayout buttomLayout;
+        ImageView[] ivPics = new ImageView[6];
 
     }
 
