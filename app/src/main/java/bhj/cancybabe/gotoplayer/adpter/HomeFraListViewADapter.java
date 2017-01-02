@@ -103,38 +103,8 @@ public class HomeFraListViewADapter extends BaseAdapter {
         for(j = 0; j < currentActInfo.getActionPic().size();j++){
             //获取当前项中的每张图片上的url
             String picUrl = currentActInfo.getActionPic().get(j).getUrl();
-
             imageLoaderSaveAndDiaplay(picUrl, viewHolder.ivPics[j]);
-
-/*
-            String fileUrl = picUrl.substring(picUrl.lastIndexOf("/") +1,picUrl.length()-4);
-           // Log.i("myTag",fileUrl);
-
-            File actionFile = new File("sdcard/gotoplayActionPic"+fileUrl+".png");
-
-            if (actionFile.exists()){
-                viewHolder.ivPics[j].setImageBitmap(BitmapFactory.decodeFile(actionFile.getAbsolutePath()));
-            }else {
-                //显示活动图片，
-                //download第一个参数是指定的下载路径，也可以下载以后保存到这个路径
-                currentActInfo.getActionPic().get(j).download(actionFile,new DownloadFileListener() {
-                    @Override
-                    public void done(String path, BmobException e) {
-                        if (e == null) {
-                            viewHolder.ivPics[j].setImageBitmap(BitmapFactory.decodeFile(path));
-                        }
-                    }
-                    @Override
-                    public void onProgress(Integer integer, long l) {
-
-                    }
-                });
-            }*/
-
         }
-
-
-
 
         //获取发布者的昵称
         HashMap<String,String> userNickName = (HashMap<String, String>) MyApplication.userActInfo.get("UserNickName");
@@ -153,7 +123,6 @@ public class HomeFraListViewADapter extends BaseAdapter {
             viewHolder.tvActionPubUserName.setText(userNickName.get(currentActInfo.getActionUserId()));
         }
 
-
         FindUserInfoUtils.findUserInfo(currentActInfo.getActionUserId(), new FindUserInfoUtils.getUserInfoListener() {
             @Override
             public void getUserInfo(UserInfo userInfo,BmobException e) {
@@ -161,33 +130,8 @@ public class HomeFraListViewADapter extends BaseAdapter {
                 String picUrl = userInfo.getUserHead().getUrl();
 
                 imageLoaderSaveAndDiaplay(picUrl, viewHolder.ivActionUserHead);
-
-//                String fileUrl = picUrl.substring(picUrl.lastIndexOf("/"),picUrl.length() - 3);
-//                File actionFile = new File("sdcard/gotoplayUserHeadPic"+fileUrl+".png");
-//
-//                if (actionFile.exists()){
-//                    viewHolder.ivActionUserHead.setImageBitmap(BitmapFactory.decodeFile(actionFile.getAbsolutePath()));
-//
-//                }else {
-//                    userInfo.getUserHead().download(actionFile,new DownloadFileListener() {
-//                        @Override
-//                        public void done(String path, BmobException e) {
-//                            if (e == null){
-//                                viewHolder.ivActionUserHead.setImageBitmap(BitmapFactory.decodeFile(path));
-//                            }
-//                        }
-//                        @Override
-//                        public void onProgress(Integer integer, long l) {
-//
-//                        }
-//                    });
-//                }
             }
         });
-
-
-
-
 
         boolean isPraiseFlag = false;//默认未收藏
         //判断用户收藏了哪些属性
@@ -300,9 +244,6 @@ public class HomeFraListViewADapter extends BaseAdapter {
             }
 
         }
-
-
-
         return view;
     }
 

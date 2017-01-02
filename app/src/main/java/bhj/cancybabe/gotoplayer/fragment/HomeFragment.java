@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -69,6 +70,17 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
        // mListView.setPullLoadEnable(true);
         final HomeFraListViewADapter adapter = new HomeFraListViewADapter(act, actInfos);
         mListView.setAdapter(adapter);
+
+        //listview子项的点击监听
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                ArrayList<UserActivtiesInfo>  activtiesInfos = (ArrayList<UserActivtiesInfo>) MyApplication.userActInfo.get("AllActInfos");
+
+            }
+        });
+
+        //listview的下拉刷新和上拉加载
         mListView.setOnReflushOperationsListener(new YIListView.ReflushOperationsListener() {
             @Override
             public void onReflushOperations() {
@@ -93,6 +105,7 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
                         MyApplication.userActInfo.put("AllActInfos",activtiesInfos);
                         adapter.updateData((ArrayList<UserActivtiesInfo>) activtiesInfos);
                         mListView.completeReflush();
+                        mListView.setSelection(0);
                     }
                 });
 

@@ -27,18 +27,19 @@ public class FindActionInfoUtils {
      * @param count 查询多少条，默认十条
      * @param listener
      */
+    private static int mSkip = 0;
     public static void findAllUserInfo(int type, String data, int skip, int count, final findAllActionInfoListener listener){
                 BmobQuery<UserActivtiesInfo> query = new BmobQuery<>();
-
+        mSkip  += skip;
+        query.order("-createdAt");
         switch (type){
             case 1:
                 query.setLimit(3);
-
+               // query.order("-createdAt");
                 break;
             case 2:
                 query.setLimit(count);
-                query.setSkip(skip);
-
+                query.setSkip(mSkip);
                 break;
 
             case 3:

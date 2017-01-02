@@ -11,5 +11,6 @@
     <color name="act_background">#f5f5f5</color>
     <color name="act_textcolor">#8a8a8a</color>
     <color name="act_texthui">#a4a4a4</color>
+    <color name="white">#fff</color>
 
 </resources>
