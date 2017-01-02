@@ -19,7 +19,7 @@ import bhj.cancybabe.gotoplayer.base.BaseInterface;
 import bhj.cancybabe.gotoplayer.bean.UserActivtiesInfo;
 import bhj.cancybabe.gotoplayer.bean.UserInfo;
 import bhj.cancybabe.gotoplayer.ui.MyImageView;
-import bhj.cancybabe.gotoplayer.ui.XListView;
+import bhj.cancybabe.gotoplayer.ui.YIListView;
 import bhj.cancybabe.gotoplayer.utils.FindActionInfoUtils;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
@@ -31,7 +31,7 @@ import cn.bmob.v3.listener.FindListener;
 public class HomeFragment extends BaseFragment implements BaseInterface,View.OnClickListener{
     private EditText mEtSearch;
     private ImageView mIvSearch;
-    private XListView mListView;
+    private YIListView mListView;
     private TextView mTvActionUserName,mTVActionTimer,mTvActionMoney,mTvActionDistance,mTvActionDetails;
     private MyImageView mIvHead;
     private ImageView mIvLike;
@@ -66,40 +66,39 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
     private void initOperations() {
         mIvSearch.setOnClickListener(this);
         ArrayList<UserActivtiesInfo> actInfos = (ArrayList<UserActivtiesInfo>) MyApplication.userActInfo.get("AllActInfos");
+       // mListView.setPullLoadEnable(true);
         final HomeFraListViewADapter adapter = new HomeFraListViewADapter(act, actInfos);
         mListView.setAdapter(adapter);
-        mListView.setXListViewListener(new XListView.IXListViewListener() {
+        mListView.setOnReflushOperationsListener(new YIListView.ReflushOperationsListener() {
             @Override
-            public void onRefresh() {
-                //下拉的时候进行刷新操作
-                //从Bmob获取数据+-**
+            public void onReflushOperations() {
                 toast("刷新中.....");
                 FindActionInfoUtils.findAllUserInfo(1, null, 0, 0, new FindActionInfoUtils.findAllActionInfoListener() {
                     @Override
                     public void getActionInfo(List<UserActivtiesInfo> activtiesInfos, BmobException ex) {
                         MyApplication.userActInfo.put("AllActInfos",activtiesInfos);
                         adapter.updateData((ArrayList<UserActivtiesInfo>) activtiesInfos);
-                        mListView.stopRefresh();
+                        mListView.completeReflush();
                     }
                 });
-
             }
 
             @Override
-            public void onLoadMore() {
-                //上拉加载更多
+            public void onLodingMore() {
+
                 toast("加载更多中...");
                 FindActionInfoUtils.findAllUserInfo(2, null, 3, 3, new FindActionInfoUtils.findAllActionInfoListener() {
                     @Override
                     public void getActionInfo(List<UserActivtiesInfo> activtiesInfos, BmobException ex) {
                         MyApplication.userActInfo.put("AllActInfos",activtiesInfos);
                         adapter.updateData((ArrayList<UserActivtiesInfo>) activtiesInfos);
-                        mListView.stopLoadMore();
+                        mListView.completeReflush();
                     }
                 });
 
             }
         });
+
     }
 
     /**
@@ -130,7 +129,7 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
     public void initView() {
         mIvSearch = (ImageView) view.findViewById(R.id.fra_iv_search);
         mEtSearch = (EditText) view.findViewById(R.id.fra_ed_search);
-        mListView = (XListView) view.findViewById(R.id.fra_home_listview);
+        mListView = (YIListView) view.findViewById(R.id.fra_home_listview);
         mTvActionUserName = (TextView) view.findViewById(R.id.fra_home_lv_tv_name);
         mTVActionTimer = (TextView) view.findViewById(R.id.fra_home_lv_tv_time);
         mTvActionMoney = (TextView) view.findViewById(R.id.fra_home_lv_tv_money);

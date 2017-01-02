@@ -429,12 +429,13 @@ class XListViewFooter extends LinearLayout {
 		mHintView.setVisibility(View.INVISIBLE);
 		if (state == STATE_READY) {
 			mHintView.setVisibility(View.VISIBLE);
-			mHintView.setText("�ɿ�����....");
+			mHintView.setText("上拉加载更多....");
 		} else if (state == STATE_LOADING) {
 			mProgressBar.setVisibility(View.VISIBLE);
 		} else {
 			mHintView.setVisibility(View.VISIBLE);
-			mHintView.setText("���ظ���");
+			mHintView.setText("加载成功...");
+			//hide();
 		}
 	}
 

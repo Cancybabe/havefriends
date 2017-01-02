@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:gravity="center">
+
+
+    <ProgressBar android:layout_width="30dp"
+        android:layout_centerInParent="true"
+        android:layout_height="30dp"
+        android:id="@+id/pb_rotate"
+        android:indeterminateDuration="1000"
+        android:indeterminateDrawable="@drawable/indeterminate_drawable"
+        />
+
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#666666"
+        android:text="正在刷新..."/>
+
+
+
+</LinearLayout>
