@@ -2,7 +2,6 @@ package bhj.cancybabe.gotoplayer.adpter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +28,6 @@ import bhj.cancybabe.gotoplayer.bean.UserInfo;
 import bhj.cancybabe.gotoplayer.utils.FindUserInfoUtils;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.DownloadFileListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
@@ -162,26 +159,29 @@ public class HomeFraListViewADapter extends BaseAdapter {
             public void getUserInfo(UserInfo userInfo,BmobException e) {
                 //获取发布者的头像
                 String picUrl = userInfo.getUserHead().getUrl();
-                String fileUrl = picUrl.substring(picUrl.lastIndexOf("/"),picUrl.length() - 3);
-                File actionFile = new File("sdcard/gotoplayUserHeadPic"+fileUrl+".png");
 
-                if (actionFile.exists()){
-                    viewHolder.ivActionUserHead.setImageBitmap(BitmapFactory.decodeFile(actionFile.getAbsolutePath()));
+                imageLoaderSaveAndDiaplay(picUrl, viewHolder.ivActionUserHead);
 
-                }else {
-                    userInfo.getUserHead().download(actionFile,new DownloadFileListener() {
-                        @Override
-                        public void done(String path, BmobException e) {
-                            if (e == null){
-                                viewHolder.ivActionUserHead.setImageBitmap(BitmapFactory.decodeFile(path));
-                            }
-                        }
-                        @Override
-                        public void onProgress(Integer integer, long l) {
-
-                        }
-                    });
-                }
+//                String fileUrl = picUrl.substring(picUrl.lastIndexOf("/"),picUrl.length() - 3);
+//                File actionFile = new File("sdcard/gotoplayUserHeadPic"+fileUrl+".png");
+//
+//                if (actionFile.exists()){
+//                    viewHolder.ivActionUserHead.setImageBitmap(BitmapFactory.decodeFile(actionFile.getAbsolutePath()));
+//
+//                }else {
+//                    userInfo.getUserHead().download(actionFile,new DownloadFileListener() {
+//                        @Override
+//                        public void done(String path, BmobException e) {
+//                            if (e == null){
+//                                viewHolder.ivActionUserHead.setImageBitmap(BitmapFactory.decodeFile(path));
+//                            }
+//                        }
+//                        @Override
+//                        public void onProgress(Integer integer, long l) {
+//
+//                        }
+//                    });
+//                }
             }
         });
 
@@ -409,7 +409,6 @@ public class HomeFraListViewADapter extends BaseAdapter {
         this.datas.clear();
         this.datas = datas;
         this.notifyDataSetChanged();
-
     }
 
     /**

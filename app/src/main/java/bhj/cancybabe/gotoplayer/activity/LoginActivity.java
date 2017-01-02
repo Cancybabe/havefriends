@@ -113,6 +113,7 @@ public class LoginActivity extends BaseActivity implements BaseInterface {
      * @param actLoginUsername
      * @param actloginPassword
      */
+
     private void sendLoginMessageToserver(final String actLoginUsername, final String actloginPassword) {
         showDilaog();
         BmobUser loginBm = new BmobUser();
@@ -131,8 +132,6 @@ public class LoginActivity extends BaseActivity implements BaseInterface {
 
                     MyApplication.userInfo = BmobUser.getCurrentUser(UserInfo.class);
                     //跳转至主界面
-
-
 
                     jumpToHomeAct();
                     return;

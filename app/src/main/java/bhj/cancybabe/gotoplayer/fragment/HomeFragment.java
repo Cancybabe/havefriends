@@ -72,7 +72,7 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
             @Override
             public void onRefresh() {
                 //下拉的时候进行刷新操作
-                //从Bmob获取数据
+                //从Bmob获取数据+-**
                 toast("刷新中.....");
                 FindActionInfoUtils.findAllUserInfo(1, null, 0, 0, new FindActionInfoUtils.findAllActionInfoListener() {
                     @Override
@@ -88,6 +88,15 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
             @Override
             public void onLoadMore() {
                 //上拉加载更多
+                toast("加载更多中...");
+                FindActionInfoUtils.findAllUserInfo(2, null, 3, 3, new FindActionInfoUtils.findAllActionInfoListener() {
+                    @Override
+                    public void getActionInfo(List<UserActivtiesInfo> activtiesInfos, BmobException ex) {
+                        MyApplication.userActInfo.put("AllActInfos",activtiesInfos);
+                        adapter.updateData((ArrayList<UserActivtiesInfo>) activtiesInfos);
+                        mListView.stopLoadMore();
+                    }
+                });
 
             }
         });

@@ -1,15 +1,11 @@
 package bhj.cancybabe.gotoplayer.utils;
 
-import android.util.Log;
-
 import java.util.List;
 
 import bhj.cancybabe.gotoplayer.bean.UserActivtiesInfo;
-import bhj.cancybabe.gotoplayer.bean.UserInfo;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.QueryListener;
 
 /**
  * Created by Cancybabe on 2016/11/11.
@@ -36,7 +32,7 @@ public class FindActionInfoUtils {
 
         switch (type){
             case 1:
-                query.setLimit(10);
+                query.setLimit(3);
 
                 break;
             case 2:
