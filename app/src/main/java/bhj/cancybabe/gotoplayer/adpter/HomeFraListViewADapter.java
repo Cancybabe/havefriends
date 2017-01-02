@@ -1,6 +1,7 @@
 package bhj.cancybabe.gotoplayer.adpter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.search.core.PoiInfo;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -73,7 +77,6 @@ public class HomeFraListViewADapter extends BaseAdapter {
             viewHolder.tvActionDistance = (TextView) view.findViewById(R.id.fra_home_lv_tv_distance);
             viewHolder.tvActionContent = (TextView) view.findViewById(R.id.fra_home_lv_tv_actionDetails);
             viewHolder.tvActionMoney = (TextView) view.findViewById(R.id.fra_home_lv_tv_money);
-            viewHolder.ivActionPic = (ImageView) view.findViewById(R.id.fra_home_lv_iv_actionPic);
             viewHolder.ivActionUserHead = (ImageView) view.findViewById(R.id.fra_home_iv_head);
             viewHolder.ivUserPraise = (ImageView) view.findViewById(R.id.fra_home_lv_iv_like);
             viewHolder.topLayout = (LinearLayout) view.findViewById(R.id.toppiclayout);
@@ -99,9 +102,14 @@ public class HomeFraListViewADapter extends BaseAdapter {
 
 
         //图片的三级缓存
-        //下载所有的图片
+        //下载所有的图片,如果当前图片已经存在则直接展示，否则从网络下载之后保存到本地再展示
         for(j = 0; j < currentActInfo.getActionPic().size();j++){
+            //获取当前项中的每张图片上的url
             String picUrl = currentActInfo.getActionPic().get(j).getUrl();
+
+            imageLoaderSaveAndDiaplay(picUrl, viewHolder.ivPics[j]);
+
+/*
             String fileUrl = picUrl.substring(picUrl.lastIndexOf("/") +1,picUrl.length()-4);
            // Log.i("myTag",fileUrl);
 
@@ -124,7 +132,7 @@ public class HomeFraListViewADapter extends BaseAdapter {
 
                     }
                 });
-            }
+            }*/
 
         }
 
@@ -271,9 +279,6 @@ public class HomeFraListViewADapter extends BaseAdapter {
             }
         });
 
-        class  ActionLocationHolder{
-
-        }
 
         //用户举例活动的距离
         BDLocation userLocation = MyApplication.currentUserLocation;
@@ -391,7 +396,6 @@ public class HomeFraListViewADapter extends BaseAdapter {
         TextView tvActionDistance;
         TextView tvActionMoney;
         TextView tvActionContent;
-        ImageView ivActionPic;
         ImageView ivActionUserHead;
         ImageView ivUserPraise;
         LinearLayout topLayout;
@@ -405,6 +409,36 @@ public class HomeFraListViewADapter extends BaseAdapter {
         this.datas.clear();
         this.datas = datas;
         this.notifyDataSetChanged();
+
+    }
+
+    /**
+     * 用imageloader缓存图片并展示到控件上
+     * @param url  网络图片地址
+     * @param iv  要展示到哪个控件
+     */
+    public void imageLoaderSaveAndDiaplay(String url, final ImageView iv) {
+        ImageLoader.getInstance().displayImage(url, iv, MyApplication.getSimpleOptions(), new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String s, View view) {
+
+            }
+
+            @Override
+            public void onLoadingFailed(String s, View view, FailReason failReason) {
+
+            }
+
+            @Override
+            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                iv.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onLoadingCancelled(String s, View view) {
+
+            }
+        });
 
     }
 

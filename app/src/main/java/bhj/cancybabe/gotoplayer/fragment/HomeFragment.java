@@ -77,16 +77,11 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
                 FindActionInfoUtils.findAllUserInfo(1, null, 0, 0, new FindActionInfoUtils.findAllActionInfoListener() {
                     @Override
                     public void getActionInfo(List<UserActivtiesInfo> activtiesInfos, BmobException ex) {
-//                        MyApplication.userActivtiesInfo = (ArrayList<UserActivtiesInfo>) activtiesInfos;
-//                        toast("activtiesInfos.size()"+activtiesInfos.size());
                         MyApplication.userActInfo.put("AllActInfos",activtiesInfos);
-//                        adapter.notifyDataSetChanged();
                         adapter.updateData((ArrayList<UserActivtiesInfo>) activtiesInfos);
                         mListView.stopRefresh();
                     }
                 });
-
-
 
             }
 

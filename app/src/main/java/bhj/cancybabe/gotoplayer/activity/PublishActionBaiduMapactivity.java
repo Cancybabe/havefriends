@@ -1,10 +1,7 @@
 package bhj.cancybabe.gotoplayer.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,23 +11,20 @@ import android.widget.TextView;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.Marker;
-import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.PoiInfo;
 import com.baidu.mapapi.search.core.SearchResult;
 import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
-import com.baidu.mapapi.search.poi.PoiAddrInfo;
 import com.baidu.mapapi.search.poi.PoiCitySearchOption;
 import com.baidu.mapapi.search.poi.PoiDetailResult;
 import com.baidu.mapapi.search.poi.PoiIndoorResult;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
+
 import java.util.List;
+
 import bhj.cancybabe.gotoplayer.R;
-import bhj.cancybabe.gotoplayer.application.MyApplication;
 import bhj.cancybabe.gotoplayer.base.BaseActivity;
 import bhj.cancybabe.gotoplayer.base.BaseInterface;
-import cn.bmob.v3.datatype.BmobGeoPoint;
 
 /**
  * Created by Cancybabe on 2016/11/14.

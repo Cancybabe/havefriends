@@ -46,7 +46,7 @@
             android:id="@+id/fra_my_head"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/headnew"/>
+           />
 
         <TextView
             android:layout_marginTop="20dp"

@@ -2,31 +2,20 @@ package bhj.cancybabe.gotoplayer.activity;
 
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import bhj.cancybabe.gotoplayer.R;
 import bhj.cancybabe.gotoplayer.application.MyApplication;
 import bhj.cancybabe.gotoplayer.base.BaseActivity;
 import bhj.cancybabe.gotoplayer.base.BaseInterface;
-import bhj.cancybabe.gotoplayer.bean.UserActivtiesInfo;
 import bhj.cancybabe.gotoplayer.bean.UserInfo;
-import bhj.cancybabe.gotoplayer.utils.FindActionInfoUtils;
-import bhj.cancybabe.gotoplayer.utils.FindUserInfoUtils;
 import bhj.cancybabe.gotoplayer.utils.SaveAndGetUserInfoUtils;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.DownloadFileListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 

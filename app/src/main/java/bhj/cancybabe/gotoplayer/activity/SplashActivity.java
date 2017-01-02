@@ -5,30 +5,24 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 
 import bhj.cancybabe.gotoplayer.R;
 import bhj.cancybabe.gotoplayer.application.MyApplication;
 import bhj.cancybabe.gotoplayer.base.BaseActivity;
 import bhj.cancybabe.gotoplayer.bean.UserActivtiesInfo;
-import bhj.cancybabe.gotoplayer.bean.UserInfo;
 import bhj.cancybabe.gotoplayer.utils.FindActionInfoUtils;
-import bhj.cancybabe.gotoplayer.utils.FindUserInfoUtils;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.DownloadFileListener;
 
 /**
  * 闪屏界面
@@ -101,73 +95,69 @@ public class SplashActivity extends BaseActivity {
                             if (ex == null){
                                 MyApplication.userActInfo.put("AllActInfos",activtiesInfos);
 
-
-                                //用户昵称集合
-
-                                final HashMap<String,String> userNickName = new HashMap<String, String>();
-
-
-
-                                for (int i = 0; i < activtiesInfos.size();i++) {
-                                    UserActivtiesInfo actInfo = activtiesInfos.get(i);
-
-                                    String picUrl = actInfo.getActionPic().get(0).getUrl();
-                                    Log.i("myTag", picUrl);
-
-                                    String fileUrl = picUrl.substring(picUrl.lastIndexOf("/") + 1, picUrl.length() - 4);
-                                    Log.i("myTag", fileUrl);
-
-                                    File actionFile = new File("sdcard/gotoplayActionPic" + fileUrl + ".png");
-
-                                    if (!actionFile.exists()){
-                                    //下载活动图片
-                                    actInfo.getActionPic().get(0).download(actionFile, new DownloadFileListener() {
-                                        @Override
-                                        public void done(String path, BmobException e) {
-                                            if (e == null) {
-                                                toast("活动图片下载成功");
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onProgress(Integer integer, long l) {
-
-                                        }
-                                    });
-
-                                    }
-                                    //获取头像和昵称
-                                    FindUserInfoUtils.findUserInfo(actInfo.getActionUserId(), new FindUserInfoUtils.getUserInfoListener() {
-
-                                        @Override
-                                        public void getUserInfo(UserInfo userInfo, BmobException e) {
-                                            //获取发布者的昵称
-                                            userNickName.put(userInfo.getObjectId(),userInfo.getNickName());
-                                            MyApplication.userActInfo.put("UserNickName",userNickName);
-
-                                            //获取发布者的头像
-                                            String picUrl = userInfo.getUserHead().getUrl();
-                                            String fileUrl = picUrl.substring(picUrl.lastIndexOf("/"),picUrl.length() - 3);
-                                            File actionFile = new File("sdcard/gotoplayUserHeadPic"+fileUrl+".png");
-                                            if (!actionFile.exists()){
-                                                userInfo.getUserHead().download(actionFile,new DownloadFileListener() {
-                                                    @Override
-                                                    public void done(String path, BmobException e) {
-                                                        if (e == null){
-                                                            toast("活动用户头像下载成功");
-                                                        }
-                                                    }
-                                                    @Override
-                                                    public void onProgress(Integer integer, long l) {
-
-                                                    }
-                                                });
-                                            }
-
-                                        }
-                                    });
-
-                                }
+//                                //用户昵称集合
+//                                final HashMap<String,String> userNickName = new HashMap<String, String>();
+//
+//                                for (int i = 0; i < activtiesInfos.size();i++) {
+//                                    UserActivtiesInfo actInfo = activtiesInfos.get(i);
+//
+//                                    String picUrl = actInfo.getActionPic().get(0).getUrl();
+//                                    Log.i("myTag", picUrl);
+//
+//                                    String fileUrl = picUrl.substring(picUrl.lastIndexOf("/") + 1, picUrl.length() - 4);
+//                                    Log.i("myTag", fileUrl);
+//
+//                                    File actionFile = new File("sdcard/gotoplayActionPic" + fileUrl + ".png");
+//
+//                                    if (!actionFile.exists()){
+//                                    //下载活动图片
+//                                    actInfo.getActionPic().get(0).download(actionFile, new DownloadFileListener() {
+//                                        @Override
+//                                        public void done(String path, BmobException e) {
+//                                            if (e == null) {
+//                                                toast("活动图片下载成功");
+//                                            }
+//                                        }
+//
+//                                        @Override
+//                                        public void onProgress(Integer integer, long l) {
+//
+//                                        }
+//                                    });
+//
+//                                    }
+//                                    //获取头像和昵称
+//                                    FindUserInfoUtils.findUserInfo(actInfo.getActionUserId(), new FindUserInfoUtils.getUserInfoListener() {
+//
+//                                        @Override
+//                                        public void getUserInfo(UserInfo userInfo, BmobException e) {
+//                                            //获取发布者的昵称
+//                                            userNickName.put(userInfo.getObjectId(),userInfo.getNickName());
+//                                            MyApplication.userActInfo.put("UserNickName",userNickName);
+//
+//                                            //获取发布者的头像
+//                                            String picUrl = userInfo.getUserHead().getUrl();
+//                                            String fileUrl = picUrl.substring(picUrl.lastIndexOf("/"),picUrl.length() - 3);
+//                                            File actionFile = new File("sdcard/gotoplayUserHeadPic"+fileUrl+".png");
+//                                            if (!actionFile.exists()){
+//                                                userInfo.getUserHead().download(actionFile,new DownloadFileListener() {
+//                                                    @Override
+//                                                    public void done(String path, BmobException e) {
+//                                                        if (e == null){
+//                                                            toast("活动用户头像下载成功");
+//                                                        }
+//                                                    }
+//                                                    @Override
+//                                                    public void onProgress(Integer integer, long l) {
+//
+//                                                    }
+//                                                });
+//                                            }
+//
+//                                        }
+//                                    });
+//
+//                                }
 
                             }else {
 

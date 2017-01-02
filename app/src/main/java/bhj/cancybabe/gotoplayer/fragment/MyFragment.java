@@ -12,12 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.ImageSize;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
 import java.io.File;
 import java.util.ArrayList;
+
 import bhj.cancybabe.gotoplayer.R;
 import bhj.cancybabe.gotoplayer.adpter.MyFraGridViewAdapter;
 import bhj.cancybabe.gotoplayer.application.MyApplication;
@@ -117,13 +119,35 @@ public class MyFragment extends BaseFragment {
      * @param mTvHead  要展示到哪个控件
      */
     public void imageLoaderSaveAndDiaplay(String url, final ImageView mTvHead) {
-        ImageSize mImageSize = new ImageSize(100, 100);
+       /* ImageSize mImageSize = new ImageSize(100, 100);
         ImageLoader.getInstance().loadImage(url, mImageSize,new SimpleImageLoadingListener(){
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 super.onLoadingComplete(imageUri, view, loadedImage);
-                Log.i("myTag","onLoadingComplete"+imageUri);
+               // Log.i("myTag","onLoadingComplete"+imageUri);
                 mTvHead.setImageBitmap(loadedImage);
+            }
+        });*/
+
+        ImageLoader.getInstance().displayImage(url, mTvHead, MyApplication.getSimpleOptions(), new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String s, View view) {
+
+            }
+
+            @Override
+            public void onLoadingFailed(String s, View view, FailReason failReason) {
+
+            }
+
+            @Override
+            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                mTvHead.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onLoadingCancelled(String s, View view) {
+
             }
         });
 
