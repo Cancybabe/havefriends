@@ -95,7 +95,7 @@
         <bhj.cancybabe.gotoplayer.ui.YIListView
             android:id="@+id/fra_home_listview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
         </bhj.cancybabe.gotoplayer.ui.YIListView>
 
 

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/act_background"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="5dp"
+        android:background="@color/act_text">
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详情"
+            android:textSize="20sp"
+            android:textColor="@color/act_titlebar"/>
+
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/fra_home_menu"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:background="@color/act_text">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
+        <TextView
+            android:id="@+id/act_homedetails_tv_publisher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="活动发起人：cancybabe"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/act_textcolor"
+
+            />
+
+        <TextView
+            android:id="@+id/act_homedetails_tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="活动内容：哈哈，周末国家图书馆一起去看书，有医院的一起啊。。。。"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/act_textcolor"
+            />
+        <TextView
+            android:id="@+id/act_homedetails_tv_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="活动金额：100元"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/act_textcolor"
+            />
+        <TextView
+            android:id="@+id/act_homedetails_tv_diatance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="活动距离：10km"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/act_textcolor"
+            />
+        <TextView
+            android:id="@+id/act_homedetails_tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="活动时间的：2017-01-01"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/act_textcolor"
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="#FF567F"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
+                
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   android:gravity="center">
+
+                   <ImageView
+                       android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:src="@drawable/fra_my_order"/>
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="8dp"
+                       android:text="付款"
+                       android:textColor="@color/act_textcolor"
+                       android:textSize="20sp"/>
+               </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/countdown"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="2:15:33"
+                        android:textColor="@color/act_textcolor"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/fra_my_shoucang"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="收藏:2人"
+                        android:textColor="@color/act_textcolor"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/fra_my_youhui"/>
+
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="付款"
+                        android:textColor="@color/act_textcolor"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="#FF567F"></View>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

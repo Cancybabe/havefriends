@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/act_text"
     android:orientation="vertical">
 
@@ -83,64 +83,28 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content" />
 
-
-       <LinearLayout
-           android:id="@+id/toppiclayout"
+       <FrameLayout
            android:layout_width="match_parent"
-           android:layout_height="120dp"
-           android:layout_marginTop="5dp"
-           android:orientation="horizontal">
+           android:layout_height="240dp">
+
+           <GridView
+               android:padding="5dp"
+               android:id="@+id/fra_home_gv"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:numColumns="3"
+               android:horizontalSpacing="5dp"
+               android:verticalSpacing="5dp"></GridView>
 
            <ImageView
-               android:id="@+id/pic1"
-               android:layout_width="0dp"
-               android:layout_weight="1"
-               android:layout_marginRight="10px"
+               android:visibility="invisible"
+               android:id="@+id/fra_home_iv_one"
                android:scaleType="fitXY"
+               android:layout_width="match_parent"
                android:layout_height="match_parent" />
-           <ImageView
-               android:id="@+id/pic2"
-               android:layout_width="0dp"
-               android:layout_weight="1"
-               android:layout_marginRight="10px"
-               android:scaleType="fitXY"
-               android:layout_height="match_parent" />
-           <ImageView
-               android:id="@+id/pic3"
-               android:layout_width="0dp"
-               android:layout_weight="1"
-               android:scaleType="fitXY"
-               android:layout_height="match_parent" />
-       </LinearLayout>
 
-       <LinearLayout
-           android:id="@+id/buttompiclayout"
-           android:layout_width="match_parent"
-           android:layout_height="120dp"
-           android:layout_marginTop="5dp"
-           android:orientation="horizontal">
+       </FrameLayout>
 
-           <ImageView
-               android:id="@+id/pic4"
-               android:layout_width="0dp"
-               android:layout_weight="1"
-               android:layout_marginRight="10px"
-               android:scaleType="fitXY"
-               android:layout_height="match_parent" />
-           <ImageView
-               android:id="@+id/pic5"
-               android:layout_width="0dp"
-               android:layout_weight="1"
-               android:layout_marginRight="10px"
-               android:scaleType="fitXY"
-               android:layout_height="match_parent" />
-           <ImageView
-               android:id="@+id/pic6"
-               android:layout_width="0dp"
-               android:layout_weight="1"
-               android:scaleType="fitXY"
-               android:layout_height="match_parent" />
-       </LinearLayout>
 
    </LinearLayout>
 

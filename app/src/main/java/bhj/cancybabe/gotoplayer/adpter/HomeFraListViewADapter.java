@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
@@ -39,7 +39,6 @@ public class HomeFraListViewADapter extends BaseAdapter {
     private Context context;
     private ArrayList<UserActivtiesInfo> datas;
     String nickName;//用户名
-    private int[] picIds = {R.id.pic1,R.id.pic2,R.id.pic3,R.id.pic4,R.id.pic5,R.id.pic6};
     int j;
     public HomeFraListViewADapter(Context context, ArrayList<UserActivtiesInfo> datas) {
         this.context = context;
@@ -76,12 +75,8 @@ public class HomeFraListViewADapter extends BaseAdapter {
             viewHolder.tvActionMoney = (TextView) view.findViewById(R.id.fra_home_lv_tv_money);
             viewHolder.ivActionUserHead = (ImageView) view.findViewById(R.id.fra_home_iv_head);
             viewHolder.ivUserPraise = (ImageView) view.findViewById(R.id.fra_home_lv_iv_like);
-            viewHolder.topLayout = (LinearLayout) view.findViewById(R.id.toppiclayout);
-            viewHolder.buttomLayout = (LinearLayout) view.findViewById(R.id.buttompiclayout);
-            for (int a=0;a < 6;a++){
-                viewHolder.ivPics[a] = (ImageView) view.findViewById(picIds[a]);
-            }
-
+            viewHolder.gvPics = (GridView) view.findViewById(R.id.fra_home_gv);
+            viewHolder.ivPicOne = (ImageView) view.findViewById(R.id.fra_home_iv_one);
             view.setTag(viewHolder);
         } else {
             view = convertView;
@@ -100,11 +95,18 @@ public class HomeFraListViewADapter extends BaseAdapter {
 
         //图片的三级缓存
         //下载所有的图片,如果当前图片已经存在则直接展示，否则从网络下载之后保存到本地再展示
-        for(j = 0; j < currentActInfo.getActionPic().size();j++){
-            //获取当前项中的每张图片上的url
-            String picUrl = currentActInfo.getActionPic().get(j).getUrl();
-            imageLoaderSaveAndDiaplay(picUrl, viewHolder.ivPics[j]);
+        if(currentActInfo.getActionPic().size() == 1){
+            viewHolder.gvPics.setVisibility(View.INVISIBLE);
+            viewHolder.ivPicOne.setVisibility(View.VISIBLE);
+            String picUrl = currentActInfo.getActionPic().get(0).getUrl();
+            imageLoaderSaveAndDiaplay(picUrl, viewHolder.ivPicOne);
+
+        }else{
+            viewHolder.gvPics.setVisibility(View.VISIBLE);
+            viewHolder.ivPicOne.setVisibility(View.INVISIBLE);
+            viewHolder.gvPics.setAdapter(new HomeFraListGidItemAdapter(context,currentActInfo));
         }
+
 
         //获取发布者的昵称
         HashMap<String,String> userNickName = (HashMap<String, String>) MyApplication.userActInfo.get("UserNickName");
@@ -339,9 +341,8 @@ public class HomeFraListViewADapter extends BaseAdapter {
         TextView tvActionContent;
         ImageView ivActionUserHead;
         ImageView ivUserPraise;
-        LinearLayout topLayout;
-        LinearLayout buttomLayout;
-        ImageView[] ivPics = new ImageView[6];
+        GridView gvPics;
+        ImageView ivPicOne;
 
     }
 
