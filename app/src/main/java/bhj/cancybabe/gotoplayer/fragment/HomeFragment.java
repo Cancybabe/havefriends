@@ -1,6 +1,8 @@
 package bhj.cancybabe.gotoplayer.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bhj.cancybabe.gotoplayer.R;
+import bhj.cancybabe.gotoplayer.activity.HomeDetailsActivity;
 import bhj.cancybabe.gotoplayer.adpter.HomeFraListViewADapter;
 import bhj.cancybabe.gotoplayer.application.MyApplication;
 import bhj.cancybabe.gotoplayer.base.BaseFragment;
@@ -37,7 +40,7 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
     private MyImageView mIvHead;
     private ImageView mIvLike;
     private ArrayList<UserActivtiesInfo> datas;
-    View view;
+    private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, null);
@@ -76,6 +79,13 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 ArrayList<UserActivtiesInfo>  activtiesInfos = (ArrayList<UserActivtiesInfo>) MyApplication.userActInfo.get("AllActInfos");
+                Log.i("myTag","点击了子项"+(position-1)+"activtiesInfos的长度"+activtiesInfos.size());
+                Intent intent = new Intent(getActivity(), HomeDetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("itemdatas",activtiesInfos.get(position-1));
+                intent.putExtras(bundle);
+                //intent.putExtra("itemdatas",activtiesInfos);
+                startActivity(intent);
 
             }
         });
@@ -97,15 +107,17 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
 
             @Override
             public void onLodingMore() {
-
                 toast("加载更多中...");
                 FindActionInfoUtils.findAllUserInfo(2, null, 3, 3, new FindActionInfoUtils.findAllActionInfoListener() {
                     @Override
                     public void getActionInfo(List<UserActivtiesInfo> activtiesInfos, BmobException ex) {
-                        MyApplication.userActInfo.put("AllActInfos",activtiesInfos);
-                        adapter.updateData((ArrayList<UserActivtiesInfo>) activtiesInfos);
+                        ArrayList<UserActivtiesInfo> oldActivtiesInfos = (ArrayList<UserActivtiesInfo>) MyApplication.userActInfo.get("AllActInfos");
+                        oldActivtiesInfos.addAll(activtiesInfos);
+                        MyApplication.userActInfo.put("AllActInfos",oldActivtiesInfos);
+                        Log.i("myTag","oldActivtiesInfos.size"+oldActivtiesInfos.size());
+                        adapter.updateData(oldActivtiesInfos);
                         mListView.completeReflush();
-                        mListView.setSelection(0);
+                        //mListView.setSelection(0);
                     }
                 });
 
@@ -127,15 +139,12 @@ public class HomeFragment extends BaseFragment implements BaseInterface,View.OnC
 //                    toast("查询用户成功:"+object.size());
                     UserInfo  userinfo = object.get(0);
                     String nickName = userinfo.getNickName();
-
                 }else{
 //                    toast("更新用户信息失败:" + e.getMessage());
-
                 }
             }
         });
     }
-
 
 
     @Override

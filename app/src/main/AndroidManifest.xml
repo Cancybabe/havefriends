@@ -97,6 +97,7 @@
 
         <activity android:name=".activity.PublishActionBaiduMapactivity"/>
         <activity android:name=".activity.MoreClassActivity"/>
+        <activity android:name=".activity.HomeDetailsActivity"/>
 
 
         <receiver android:name=".broadcast.SmsContentReceiver">

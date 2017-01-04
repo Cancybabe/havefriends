@@ -348,7 +348,7 @@ public class HomeFraListViewADapter extends BaseAdapter {
 
 
     public void updateData(ArrayList<UserActivtiesInfo> datas){
-        this.datas.clear();
+       // this.datas.clear();
         this.datas = datas;
         this.notifyDataSetChanged();
     }

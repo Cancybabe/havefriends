@@ -34,6 +34,7 @@ public class FindActionInfoUtils {
         query.order("-createdAt");
         switch (type){
             case 1:
+                mSkip = 0;
                 query.setLimit(3);
                // query.order("-createdAt");
                 break;
