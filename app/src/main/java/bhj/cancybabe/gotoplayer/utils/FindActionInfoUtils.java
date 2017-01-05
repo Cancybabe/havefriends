@@ -29,7 +29,7 @@ public class FindActionInfoUtils {
      */
     private static int mSkip = 0;
     public static void findAllUserInfo(int type, String data, int skip, int count, final findAllActionInfoListener listener){
-                BmobQuery<UserActivtiesInfo> query = new BmobQuery<>();
+        BmobQuery<UserActivtiesInfo> query = new BmobQuery<>();
         mSkip  += skip;
         query.order("-createdAt");
         switch (type){
