@@ -116,7 +116,7 @@ public class LoginActivity extends BaseActivity implements BaseInterface {
 
     private void sendLoginMessageToserver(final String actLoginUsername, final String actloginPassword) {
         showDilaog();
-        BmobUser loginBm = new BmobUser();
+        UserInfo loginBm = new UserInfo();
         loginBm.setUsername(actLoginUsername);
         loginBm.setPassword(actloginPassword);
         loginBm.login(new SaveListener<BmobUser>() {
@@ -130,6 +130,7 @@ public class LoginActivity extends BaseActivity implements BaseInterface {
                     //保存用户名和密码至本地
                     SaveAndGetUserInfoUtils.saveUsernameAndPassword(getApplicationContext(), actLoginUsername, actloginPassword);
 
+                    //当前用户所有的信息放到全局
                     MyApplication.userInfo = BmobUser.getCurrentUser(UserInfo.class);
                     //跳转至主界面
 

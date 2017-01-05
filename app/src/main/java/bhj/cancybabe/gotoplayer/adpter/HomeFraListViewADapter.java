@@ -61,7 +61,7 @@ public class HomeFraListViewADapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    public View getView(final int i, View convertView, ViewGroup viewGroup) {
         View view = null;
        final ViewHolder viewHolder;
         if (view == null) {
@@ -135,13 +135,17 @@ public class HomeFraListViewADapter extends BaseAdapter {
             }
         });
 
+
+
         boolean isPraiseFlag = false;//默认未收藏
-        //判断用户收藏了哪些属性
+        //当前用户收藏了哪些活动
         List<String> praiseActions = MyApplication.userInfo.getPraiseActions();
 
         if (praiseActions == null){
             praiseActions = new ArrayList<>();
         }
+
+        //如果用户收藏的活动的活动ID中包含当前的item的活动ID
         if(praiseActions.contains(currentActInfo.getObjectId())) {
             //如果收藏的集合包含当前集合
             viewHolder.ivUserPraise.setImageResource(R.drawable.fra_home_lv_item_heartafter);
@@ -153,31 +157,33 @@ public class HomeFraListViewADapter extends BaseAdapter {
 
         //点赞图片的监听
         final ActionPraiseHolder praiseHolder = new ActionPraiseHolder();
-        praiseHolder.userActivtiesInfo = currentActInfo;
+        praiseHolder.userActivtiesInfo = currentActInfo;// 活动信息
         praiseHolder.isPraFlag = isPraiseFlag;
         viewHolder.ivUserPraise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (praiseHolder.isPraFlag){//当前是已经点赞状态
-                    UserInfo userInfo = new UserInfo();
-                    List<String> userActivtiesInfos = new ArrayList<String>();
+                    List<String> userActivtiesInfos = MyApplication.userInfo.getPraiseActions();
+                    Log.i("myTag","用户表里已经点赞的个数"+userActivtiesInfos.size());
                     userActivtiesInfos.remove(currentActInfo.getObjectId());
-                    userInfo.setPraiseActions(userActivtiesInfos);
-                    userInfo.update(MyApplication.userInfo.getObjectId(), new UpdateListener() {
+                    MyApplication.userInfo.setPraiseActions(userActivtiesInfos);//当前用户已经收藏的活动
+                    MyApplication.userInfo.update(MyApplication.userInfo.getObjectId(), new UpdateListener() {
                         @Override
                         public void done(BmobException e) {
                             if (e == null) {
                                 Log.i("myTag","用户表取赞活动");
                                 praiseHolder.isPraFlag = false;
                                 viewHolder.ivUserPraise.setImageResource(R.drawable.fra_home_lv_item_heartbefore);
-                            }
+                               }
                             }
                     });
 
-                    final UserActivtiesInfo currentActInfo = new UserActivtiesInfo();
-                    List<String> praiseUserId = new ArrayList<String>();
-                    praiseUserId.remove(MyApplication.userInfo.getObjectId());
-                    currentActInfo.setPraiseUser(praiseUserId);
+                   // final UserActivtiesInfo currentActInfo = (UserActivtiesInfo) ((ArrayList) MyApplication.userActInfo.get("AllActInfos")).get(i);
+                    List<String> praiseUserIdList = currentActInfo.getPraiseUser();  //活动表中，收藏该活动的用户
+                    praiseUserIdList.remove(MyApplication.userInfo.getObjectId());
+                    currentActInfo.setPraiseUser(praiseUserIdList);
+                    ((ArrayList) MyApplication.userActInfo.get("AllActInfos")).add(i,currentActInfo);//把本地活动信息的数据集改了
+
                     currentActInfo.update(currentActInfo.getObjectId(), new UpdateListener() {
                         @Override
                         public void done(BmobException e) {
@@ -191,7 +197,13 @@ public class HomeFraListViewADapter extends BaseAdapter {
 
                 }else {//当前是没有点赞状态
                     UserInfo userInfo = new UserInfo();
-                    List<String> userActivtiesInfos = new ArrayList<String>();
+                    List<String> userActivtiesInfos;
+                    if(userInfo.getPraiseActions() == null){
+                        userActivtiesInfos = new ArrayList<String>();
+                    }else{
+                        userActivtiesInfos = userInfo.getPraiseActions();
+                    }
+
                     userActivtiesInfos.add(currentActInfo.getObjectId());
                     userInfo.setPraiseActions(userActivtiesInfos);
                     userInfo.update(MyApplication.userInfo.getObjectId(), new UpdateListener() {
@@ -206,17 +218,35 @@ public class HomeFraListViewADapter extends BaseAdapter {
                         }
                     });
 
-                    final UserActivtiesInfo currentActInfo = new UserActivtiesInfo();
-                    List<String> praiseUserId = new ArrayList<String>();
-                    praiseUserId.add(MyApplication.userInfo.getObjectId());
-                    currentActInfo.setPraiseUser(praiseUserId);
+                    //final UserActivtiesInfo currentActInfo = new UserActivtiesInfo();
+                    List<String> praiseUserIdList;
+                    if(currentActInfo.getPraiseUser() == null){
+                        praiseUserIdList = new ArrayList<String>();
+                    }else{
+                        praiseUserIdList = currentActInfo.getPraiseUser();
+                    }
+
+                    praiseUserIdList.add(MyApplication.userInfo.getObjectId());
+                    currentActInfo.setPraiseUser(praiseUserIdList);
+                    ((ArrayList) MyApplication.userActInfo.get("AllActInfos")).set(i,currentActInfo);//把本地活动信息的数据集改了
                     currentActInfo.update(currentActInfo.getObjectId(), new UpdateListener() {
                         @Override
                         public void done(BmobException e) {
                             if (e == null) {
-                                currentActInfo.increment("priseCount", 1);
+                               // currentActInfo.increment("priseCount", 1);
+                                currentActInfo.increment("priseCount"); // 分数递增1
+                                currentActInfo.update(new UpdateListener() {
+                                    @Override
+                                    public void done(BmobException e) {
+                                        Log.i("myTag","点赞加1");
+                                    }
+                                });
+                                Log.i("myTag","活动表添加点赞用户");
+                            }else{
+                                Log.i("bmob","更新失败："+e.getMessage()+","+e.getErrorCode());
                             }
-                            Log.i("myTag","活动表添加点赞用户");
+
+
                         }
                     });
 

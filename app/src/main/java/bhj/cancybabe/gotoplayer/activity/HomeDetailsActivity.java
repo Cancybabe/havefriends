@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import bhj.cancybabe.gotoplayer.R;
 import bhj.cancybabe.gotoplayer.base.BaseActivity;
 import bhj.cancybabe.gotoplayer.base.BaseInterface;
 import bhj.cancybabe.gotoplayer.bean.UserActivtiesInfo;
+import bhj.cancybabe.gotoplayer.ui.NumImageView;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -26,20 +28,25 @@ public class HomeDetailsActivity extends BaseActivity implements BaseInterface {
     private TextView tv_actionMoney;
     private TextView tv_actionDistance;
     private TextView tv_actionTime;
-    private String actionPlace;
-    private String actionMoney;
-    private String actionDesc;
-    private String actionTime;
-    private int actionPraise;
-    private String actionPublisher;
-    private String actionDistance;
+    private NumImageView iv_actionPay;
+    private ImageView iv_actionTime;
+    private NumImageView iv_actionLike;
+    private NumImageView iv_actionYouhui;
+//    private String actionPlace;
+//    private String actionMoney;
+//    private String actionDesc;
+//    private String actionTime;
+//    private int actionPraise;
+//    private String actionPublisher;
+//    private String actionDistance;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_homedetails);
-        initData();
+
         initView();
+        initData();
     }
 
     @Override
@@ -50,12 +57,10 @@ public class HomeDetailsActivity extends BaseActivity implements BaseInterface {
         tv_actionDistance = (TextView) findViewById(R.id.act_homedetails_tv_diatance);
         tv_actionTime = (TextView) findViewById(R.id.act_homedetails_tv_time);
 
-        tv_actionPublisher.setText(actionPublisher);
-        tv_actionContent.setText(actionDesc);
-        tv_actionMoney.setText(actionMoney);
-        tv_actionDistance.setText(actionPlace);
-        tv_actionTime.setText(actionTime);
-
+        iv_actionPay = (NumImageView) findViewById(R.id.act_homedetails_iv_pay);
+        iv_actionTime = (ImageView) findViewById(R.id.act_homedetails_iv_time);
+        iv_actionLike = (NumImageView) findViewById(R.id.act_homedetails_iv_like);
+        iv_actionYouhui = (NumImageView) findViewById(R.id.act_homedetails_iv_discount);
 
     }
 
@@ -68,14 +73,16 @@ public class HomeDetailsActivity extends BaseActivity implements BaseInterface {
     //初始化数据
     public void initData(){
         Intent intent = getIntent();
-        UserActivtiesInfo userActivtiesInfo = (UserActivtiesInfo) intent.getParcelableExtra("itemdatas");
-        actionPlace = userActivtiesInfo.getActionPlace();  //活动地点
-        actionMoney = userActivtiesInfo.getActionRMB();   //活动金额
-        actionDesc =  userActivtiesInfo.getActionDesc(); //活动描述
-        actionTime = userActivtiesInfo.getActionTime(); //活动时间
-        actionPraise = userActivtiesInfo.getPraiseUser().size();//点赞数
+        UserActivtiesInfo userActivtiesInfo = intent.getParcelableExtra("itemdatas");
+        String actionPlace = userActivtiesInfo.getActionPlace();  //活动地点
+        String actionMoney = userActivtiesInfo.getActionRMB();   //活动金额
+        String actionDesc =  userActivtiesInfo.getActionDesc(); //活动描述
+        String actionTime = userActivtiesInfo.getActionTime(); //活动时间
+        int actionPraise = 0;
+        if(userActivtiesInfo.getPraiseUser() != null){
+            actionPraise = userActivtiesInfo.getPraiseUser().size();//点赞数
+        }
         String publishUserObjectId =  userActivtiesInfo.getActionUserId(); //活动发起人
-        //actionDistance = userActivtiesInfo.get
         Log.i("myTag", "活动发起人"+publishUserObjectId);
         BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
         query.addWhereEqualTo("objectId", publishUserObjectId);
@@ -83,12 +90,21 @@ public class HomeDetailsActivity extends BaseActivity implements BaseInterface {
             @Override
             public void done(List<BmobUser> object, BmobException e) {
                 if(e==null){
-                    actionPublisher = (String) object.get(0).getObjectByKey("nickName");
-                   // toast("发起活动者为:"+ nickName);
+                    String actionPublisher = (String) object.get(0).getObjectByKey("nickName");
+                    tv_actionPublisher.setText(actionPublisher);
                 }else{
                     toast("更新用户信息失败:" + e.getMessage());
                 }
             }
         });
+
+
+
+        tv_actionContent.setText(actionDesc);
+        tv_actionMoney.setText(actionMoney);
+        tv_actionDistance.setText(actionPlace);
+        tv_actionTime.setText(actionTime);
+
+        iv_actionLike.setNum(2);
     }
 }

@@ -36,14 +36,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical"
         android:background="@color/act_text">
 
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            >
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" >
+            </android.support.v4.view.ViewPager>
+
+            <LinearLayout
+                android:layout_alignBottom="@id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#77000000"
+                android:padding="8dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:id="@+id/tv_intro"
+                    android:text="我是文本" />
+
+                <LinearLayout
+                    android:layout_marginTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dot_layout"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
 
         <LinearLayout
             android:layout_marginLeft="20dp"
@@ -51,60 +93,155 @@
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:orientation="vertical">
-        <TextView
-            android:id="@+id/act_homedetails_tv_publisher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="活动发起人：cancybabe"
-            android:textSize="20sp"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/act_textcolor"
 
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/act_homedetails_tv_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="活动内容：哈哈，周末国家图书馆一起去看书，有医院的一起啊。。。。"
-            android:textSize="20sp"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/act_textcolor"
-            />
-        <TextView
-            android:id="@+id/act_homedetails_tv_money"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="活动金额：100元"
-            android:textSize="20sp"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/act_textcolor"
-            />
-        <TextView
-            android:id="@+id/act_homedetails_tv_diatance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="活动距离：10km"
-            android:textSize="20sp"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/act_textcolor"
-            />
-        <TextView
-            android:id="@+id/act_homedetails_tv_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="活动时间的：2017-01-01"
-            android:textSize="20sp"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/act_textcolor"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="活动发起人:  "
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/act_titlebar"
+
+                />
+            <TextView
+                android:id="@+id/act_homedetails_tv_publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cancybabe"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/act_textcolor"
+
+                />
+
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="活动内容:  "
+                    android:textSize="20sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/act_titlebar"
+
+                    />
+                <TextView
+                    android:id="@+id/act_homedetails_tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="长城一日游长城一日游长城一日游长城一日游长城一日游长城一日游"
+                    android:textSize="20sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/act_textcolor"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="活动金额:  "
+                    android:textSize="20sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/act_titlebar"
+
+                    />
+                <TextView
+                    android:id="@+id/act_homedetails_tv_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100元"
+                    android:textSize="20sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/act_textcolor"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="活动距离:  "
+                    android:textSize="20sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/act_titlebar"
+
+                    />
+                <TextView
+                    android:id="@+id/act_homedetails_tv_diatance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100km"
+                    android:textSize="20sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/act_textcolor"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="活动时间:  "
+                    android:textSize="20sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/act_titlebar"
+
+                    />
+                <TextView
+                    android:id="@+id/act_homedetails_tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2107-1-5 6:00"
+                    android:textSize="20sp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/act_textcolor"
+
+                    />
+
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical">
 
             <View
@@ -118,28 +255,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="20dp">
-                
-               <LinearLayout
-                   android:layout_width="0dp"
-                   android:layout_weight="1"
-                   android:layout_height="match_parent"
-                   android:orientation="vertical"
-                   android:gravity="center">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                >
 
-                   <ImageView
-                       android:layout_width="40dp"
-                       android:layout_height="40dp"
-                       android:src="@drawable/fra_my_order"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_marginTop="8dp"
-                       android:text="付款"
-                       android:textColor="@color/act_textcolor"
-                       android:textSize="15sp"/>
-               </LinearLayout>
+                    <bhj.cancybabe.gotoplayer.ui.NumImageView
+                        android:id="@+id/act_homedetails_iv_pay"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:src="@drawable/fra_my_order"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="付款"
+                        android:textColor="@color/act_textcolor"
+                        android:textSize="15sp"/>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -149,8 +291,11 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:id="@+id/act_homedetails_iv_time"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
                         android:src="@drawable/countdown"/>
 
                     <TextView
@@ -169,16 +314,19 @@
                     android:orientation="vertical"
                     android:gravity="center">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                    <bhj.cancybabe.gotoplayer.ui.NumImageView
+                        android:id="@+id/act_homedetails_iv_like"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
                         android:src="@drawable/fra_my_shoucang"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="收藏:2人"
+                        android:text="收藏"
                         android:textColor="@color/act_textcolor"
                         android:textSize="15sp"/>
                 </LinearLayout>
@@ -190,16 +338,19 @@
                     android:orientation="vertical"
                     android:gravity="center">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                    <bhj.cancybabe.gotoplayer.ui.NumImageView
+                        android:id="@+id/act_homedetails_iv_discount"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
                         android:src="@drawable/fra_my_youhui"/>
 
                     <TextView
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="优惠"
+                        android:text="优惠券"
                         android:textColor="@color/act_textcolor"
                         android:textSize="15sp"/>
                 </LinearLayout>
@@ -215,6 +366,8 @@
                 android:background="#FF567F"></View>
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 
