@@ -1,15 +1,24 @@
 package bhj.cancybabe.gotoplayer.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.List;
 
 import bhj.cancybabe.gotoplayer.R;
+import bhj.cancybabe.gotoplayer.adpter.HomeFraListGidItemAdapter;
+import bhj.cancybabe.gotoplayer.application.MyApplication;
 import bhj.cancybabe.gotoplayer.base.BaseActivity;
 import bhj.cancybabe.gotoplayer.base.BaseInterface;
 import bhj.cancybabe.gotoplayer.bean.UserActivtiesInfo;
@@ -30,15 +39,11 @@ public class HomeDetailsActivity extends BaseActivity implements BaseInterface {
     private TextView tv_actionTime;
     private NumImageView iv_actionPay;
     private ImageView iv_actionTime;
-    private NumImageView iv_actionLike;
+    private NumImageView iv_actionLike;//自定义ImageView,收藏
     private NumImageView iv_actionYouhui;
-//    private String actionPlace;
-//    private String actionMoney;
-//    private String actionDesc;
-//    private String actionTime;
-//    private int actionPraise;
-//    private String actionPublisher;
-//    private String actionDistance;
+    private GridView gv_actionPics;
+    private ImageView iv_actionPic;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +67,9 @@ public class HomeDetailsActivity extends BaseActivity implements BaseInterface {
         iv_actionLike = (NumImageView) findViewById(R.id.act_homedetails_iv_like);
         iv_actionYouhui = (NumImageView) findViewById(R.id.act_homedetails_iv_discount);
 
+        gv_actionPics = (GridView) findViewById(R.id.fra_homedetails_gv);
+        iv_actionPic = (ImageView) findViewById(R.id.fra_homedetails_iv_one);
+
     }
 
     @Override
@@ -73,6 +81,7 @@ public class HomeDetailsActivity extends BaseActivity implements BaseInterface {
     //初始化数据
     public void initData(){
         Intent intent = getIntent();
+        //获取当前Item的所有数据
         UserActivtiesInfo userActivtiesInfo = intent.getParcelableExtra("itemdatas");
         String actionPlace = userActivtiesInfo.getActionPlace();  //活动地点
         String actionMoney = userActivtiesInfo.getActionRMB();   //活动金额
@@ -105,6 +114,52 @@ public class HomeDetailsActivity extends BaseActivity implements BaseInterface {
         tv_actionDistance.setText(actionPlace);
         tv_actionTime.setText(actionTime);
 
-        iv_actionLike.setNum(2);
+        iv_actionLike.setNum(actionPraise);
+
+        //图片的三级缓存
+        //下载所有的图片,如果当前图片已经存在则直接展示，否则从网络下载之后保存到本地再展示
+        if(userActivtiesInfo.getActionPic().size() == 1){
+            gv_actionPics.setVisibility(View.INVISIBLE);
+            iv_actionPic.setVisibility(View.VISIBLE);
+            String picUrl = userActivtiesInfo.getActionPic().get(0).getUrl();
+            imageLoaderSaveAndDiaplay(picUrl, iv_actionPic);
+
+        }else{
+            gv_actionPics.setVisibility(View.VISIBLE);
+            iv_actionPic.setVisibility(View.INVISIBLE);
+            gv_actionPics.setAdapter(new HomeFraListGidItemAdapter(this,userActivtiesInfo));
+        }
+
+    }
+
+
+    /**
+     * 用imageloader缓存图片并展示到控件上
+     * @param url  网络图片地址
+     * @param iv  要展示到哪个控件
+     */
+    public void imageLoaderSaveAndDiaplay(String url, final ImageView iv) {
+        ImageLoader.getInstance().displayImage(url, iv, MyApplication.getSimpleOptions(), new ImageLoadingListener() {
+            @Override
+            public void onLoadingStarted(String s, View view) {
+
+            }
+
+            @Override
+            public void onLoadingFailed(String s, View view, FailReason failReason) {
+
+            }
+
+            @Override
+            public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                iv.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onLoadingCancelled(String s, View view) {
+
+            }
+        });
+
     }
 }

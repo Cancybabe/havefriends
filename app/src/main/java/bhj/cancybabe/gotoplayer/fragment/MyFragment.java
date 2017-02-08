@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -47,6 +48,7 @@ public class MyFragment extends BaseFragment {
     private UserInfo userInfo;
     private ImageLoader mImageLoader;
     private SweetAlertDialog sweetAlertDialog;
+    private TextView tv_myNickName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,7 +80,10 @@ public class MyFragment extends BaseFragment {
 
     private void initView() {
         mTvHead = (MyImageView) view.findViewById(R.id.fra_my_head);
-        getHeadPicFromBmob(MyApplication.userInfo.getObjectId());
+        tv_myNickName = (TextView) view.findViewById(R.id.fra_my_tv_mynickname);
+        if(MyApplication.userActInfo != null) {
+            getHeadPicFromBmob(MyApplication.userInfo.getObjectId());
+        }
         datas = new ArrayList<>();
         datas.add("优惠");
         datas.add("收藏");
@@ -103,6 +108,7 @@ public class MyFragment extends BaseFragment {
             public void getUserInfo(UserInfo userInfo,BmobException e) {
                 if (e == null){
                     Log.i("myTag", userInfo.getNickName());
+                    tv_myNickName.setText(userInfo.getNickName());
                     BmobFile userhead = userInfo.getUserHead();
                     String url = userhead.getUrl();
                     Log.i("myTag", url);

@@ -219,7 +219,10 @@ public class PublishActionsActivity extends BaseActivity implements BaseInterfac
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUESD_CODE_SAVEACYION){
             ContentResolver resolver = getContentResolver();
-            Uri originalUri = data.getData();
+            Uri originalUri = null;
+            if(data != null) {
+                originalUri = data.getData();
+            }
             Bitmap photo = null;
             try {
                photo = MediaStore.Images.Media.getBitmap(resolver, originalUri);

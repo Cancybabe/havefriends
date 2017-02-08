@@ -120,8 +120,6 @@ public class HomeActivity extends BaseActivity implements BaseInterface{
     };
 
 
-
-
     /**
      *
      */

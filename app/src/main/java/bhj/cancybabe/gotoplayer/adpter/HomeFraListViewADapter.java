@@ -144,6 +144,7 @@ public class HomeFraListViewADapter extends BaseAdapter {
         if (praiseActions == null){
             praiseActions = new ArrayList<>();
         }
+        Log.i("myTag", "当前用户已点赞的活动"+praiseActions.size());
 
         //如果用户收藏的活动的活动ID中包含当前的item的活动ID
         if(praiseActions.contains(currentActInfo.getObjectId())) {
@@ -169,7 +170,7 @@ public class HomeFraListViewADapter extends BaseAdapter {
                     MyApplication.userInfo.setPraiseActions(userActivtiesInfos);//当前用户已经收藏的活动
                     MyApplication.userInfo.update(MyApplication.userInfo.getObjectId(), new UpdateListener() {
                         @Override
-                        public void done(BmobException e) {
+                        public void done(BmobException e) {//更新后台用户表
                             if (e == null) {
                                 Log.i("myTag","用户表取赞活动");
                                 praiseHolder.isPraFlag = false;
@@ -182,7 +183,7 @@ public class HomeFraListViewADapter extends BaseAdapter {
                     List<String> praiseUserIdList = currentActInfo.getPraiseUser();  //活动表中，收藏该活动的用户
                     praiseUserIdList.remove(MyApplication.userInfo.getObjectId());
                     currentActInfo.setPraiseUser(praiseUserIdList);
-                    ((ArrayList) MyApplication.userActInfo.get("AllActInfos")).add(i,currentActInfo);//把本地活动信息的数据集改了
+                    ((ArrayList) MyApplication.userActInfo.get("AllActInfos")).set(i,currentActInfo);//把本地活动信息的数据集改了
 
                     currentActInfo.update(currentActInfo.getObjectId(), new UpdateListener() {
                         @Override
@@ -196,17 +197,20 @@ public class HomeFraListViewADapter extends BaseAdapter {
 
 
                 }else {//当前是没有点赞状态
-                    UserInfo userInfo = new UserInfo();
+
+                    //当前用户收藏了哪些活动
+                    List<String> praiseActions = MyApplication.userInfo.getPraiseActions();
                     List<String> userActivtiesInfos;
-                    if(userInfo.getPraiseActions() == null){
+                    if(praiseActions == null){
                         userActivtiesInfos = new ArrayList<String>();
                     }else{
-                        userActivtiesInfos = userInfo.getPraiseActions();
+                        userActivtiesInfos = praiseActions;
                     }
 
                     userActivtiesInfos.add(currentActInfo.getObjectId());
-                    userInfo.setPraiseActions(userActivtiesInfos);
-                    userInfo.update(MyApplication.userInfo.getObjectId(), new UpdateListener() {
+                    //修改本地当前用户的点赞活动
+                    MyApplication.userInfo.setPraiseActions(userActivtiesInfos);
+                            MyApplication.userInfo.update(MyApplication.userInfo.getObjectId(), new UpdateListener() {
                         @Override
                         public void done(BmobException e) {
                             if (e == null){

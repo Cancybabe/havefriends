@@ -41,49 +41,27 @@
         android:background="@color/act_text">
 
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_height="240dp">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="200dp" >
-            </android.support.v4.view.ViewPager>
-
-            <LinearLayout
-                android:layout_alignBottom="@id/viewPager"
+            <GridView
+                android:padding="5dp"
+                android:id="@+id/fra_homedetails_gv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#77000000"
-                android:padding="8dp"
-                android:orientation="vertical" >
+                android:numColumns="3"
+                android:horizontalSpacing="5dp"
+                android:verticalSpacing="5dp"></GridView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="#ffffff"
-                    android:textSize="16sp"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:id="@+id/tv_intro"
-                    android:text="我是文本" />
+            <ImageView
+                android:visibility="invisible"
+                android:id="@+id/fra_homedetails_iv_one"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-                <LinearLayout
-                    android:layout_marginTop="3dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/dot_layout"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal" >
-
-                </LinearLayout>
-            </LinearLayout>
-
-        </RelativeLayout>
+        </FrameLayout>
 
 
 
@@ -140,7 +118,7 @@
                     android:id="@+id/act_homedetails_tv_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="长城一日游长城一日游长城一日游长城一日游长城一日游长城一日游"
+                    android:text="长城一日游长城一日游长城一日游长城一日游长城一日游长城一日游长城一日游长城一日游"
                     android:textSize="20sp"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/act_textcolor"
@@ -302,7 +280,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="2:15:33"
+                        android:text="2:30"
                         android:textColor="@color/act_textcolor"
                         android:textSize="15sp"/>
                 </LinearLayout>

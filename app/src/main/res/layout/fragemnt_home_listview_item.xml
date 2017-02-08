@@ -20,7 +20,7 @@
 
            <bhj.cancybabe.gotoplayer.ui.MyImageView
                android:id="@+id/fra_home_iv_head"
-               android:src="@drawable/headnew"
+               android:src="@drawable/head"
                android:layout_width="30dp"
                android:layout_height="30dp" />
 
