@@ -5,7 +5,7 @@
     android:background="@color/act_text"
     android:layout_height="match_parent"
     android:padding="5dp"
-    android:gravity="center">
+    android:gravity="left|center">
 
     <ImageView
         android:id="@+id/act_publish_sp_item_iv"
@@ -18,7 +18,7 @@
         android:layout_marginLeft="10dp"
         android:text="优惠"
         android:textColor="@color/act_textcolor"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

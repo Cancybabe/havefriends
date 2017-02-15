@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+    android:id="@+id/toolbar_search"
+    android:icon="@drawable/toolbar_search"
+    android:title="Search"
+    app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/toolbar_sanner"
+        android:icon="@drawable/toolbar_scanner"
+        android:title="Scanner"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/toolbar_menu"
+        android:icon="@drawable/toolbar_menu"
+        android:title="setting"
+        app:showAsAction="never"/>
+</menu>

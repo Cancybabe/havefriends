@@ -2,12 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/act_titlebar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
     <android.support.v4.view.ViewPager
         android:id="@+id/act_home_viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"></android.support.v4.view.ViewPager>
+
+
+
 
 
     <LinearLayout
@@ -67,23 +81,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/act_home_lin_add"
-            android:onClick="onLinearLayoutClick"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:padding="5dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
 
-            <ImageView
-                android:id="@+id/act_home_iv_add"
-                android:src="@drawable/act_home_add"
-                android:layout_width="35dp"
-                android:layout_height="35dp" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/act_home_lin_my"

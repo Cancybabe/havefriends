@@ -74,6 +74,7 @@ public class PublishActionsActivity extends BaseActivity implements BaseInterfac
     private int currentActionType = 0;//
     private int picPaddingLeftAndRight;
     private int picBetween = 40;
+    private ImageView iv_back;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -109,6 +110,7 @@ public class PublishActionsActivity extends BaseActivity implements BaseInterfac
         mEdMoney = (TextView) findById(R.id.act_publish_et_money);
         mEdActionName = (EditText) findById(R.id.act_publish_ed_actionname);
         mEdActionDesc = (EditText) findById(R.id.act_publish_et_actiondesc);
+        iv_back = (ImageView) findById(R.id.act_publish_back);
         showAddPic();
     }
 
@@ -372,6 +374,7 @@ public class PublishActionsActivity extends BaseActivity implements BaseInterfac
         mRelativeLayoutTime.setOnClickListener(this);
         mRelativeLayoutSpinner.setOnClickListener(this);
         mRelativeLayoutPlace.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
     }
 
     private PoiInfo mPoiInfo;
@@ -396,6 +399,11 @@ public class PublishActionsActivity extends BaseActivity implements BaseInterfac
                     }
                 });
                 break;
+            case R.id.act_publish_back:
+                toast("finish");
+                finish();
+                break;
+
         }
     }
 

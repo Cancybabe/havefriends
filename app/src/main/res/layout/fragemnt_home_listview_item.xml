@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/act_text"
-    android:orientation="vertical"
-    android:descendantFocusability="blocksDescendants">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius = "4dp"
+    android:layout_margin="10dp"
+    app:elevation="5dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -111,7 +118,7 @@
 
 
     <View
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#f2f2f2"/>
@@ -125,12 +132,6 @@
         android:layout_height="wrap_content"
         >
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_height="40dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/fra_home_list_item_bttompic"/>
 
         <ImageView
             android:id="@+id/fra_home_lv_iv_like"
@@ -139,7 +140,10 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             />
+
     </RelativeLayout>
     </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

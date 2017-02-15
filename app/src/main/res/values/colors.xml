@@ -5,6 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="act_titlebar">#FF567F</color>
+    <color name="act_PrimaryDarkd">#aaFF567F</color>
+
     <color name="act_text">#ffffff</color>
     <color name="act_backgroundbefore">#F6F6F6</color>
     <color name="act_daohangbar">#F8F8F8</color>
